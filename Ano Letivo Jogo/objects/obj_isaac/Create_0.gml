@@ -6,4 +6,6 @@ baixo = -1;
 
 hveloc = 0;
 vveloc = 0;
-veloc = 1.35;
+veloc = 0.9;
+
+direc = 0;
