@@ -1,5 +1,8 @@
 /// @description Isaac Step
 
+script_execute(estado);
+
+/*
 	#region movimentação
 direita = keyboard_check(ord("D"));
 esquerda = keyboard_check(ord("A"));
@@ -70,3 +73,5 @@ else
 			break;
 		}
 }
+#endregion
+*/

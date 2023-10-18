@@ -9,3 +9,8 @@ vveloc = 0;
 veloc = 0.9;
 
 direc = 0;
+
+estado = scr_isaac_andando;
+
+dash_direc = -1;
+dash_veloc = 20;
