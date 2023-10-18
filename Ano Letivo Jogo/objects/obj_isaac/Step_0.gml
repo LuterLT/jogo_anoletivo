@@ -1,7 +1,7 @@
 /// @description Isaac Step
 
 script_execute(estado);
-
+depth = -y;
 /*
 	#region movimentação
 direita = keyboard_check(ord("D"));
