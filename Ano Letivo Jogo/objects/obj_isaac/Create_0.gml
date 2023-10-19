@@ -14,3 +14,5 @@ estado = scr_isaac_andando;
 
 dash_direc = -1;
 dash_veloc = 20;
+
+atacando = false;
