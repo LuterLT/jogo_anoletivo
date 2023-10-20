@@ -74,6 +74,7 @@ function scr_isaac_andando()
 			}
 	}
 	#endregion
+	#region Dash
 	if keyboard_check(ord("Q"))
 	{
 		alarm[0] = 24;
@@ -92,3 +93,4 @@ function scr_isaac_dash()
 	var _inst = instance_create_layer(x, y, "Instances", obj_dash_isaac);
 	_inst.sprite_index = sprite_index;
 }
+#endregion

@@ -3,7 +3,7 @@
   "resourceVersion": "1.0",
   "name": "spr_isaac_atacando_mao_esq_strip14",
   "bboxMode": 0,
-  "collisionKind": 1,
+  "collisionKind": 4,
   "type": 0,
   "origin": 9,
   "preMultiplyAlpha": false,
@@ -94,7 +94,7 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Sprites",
-    "path": "folders/Sprites.yy",
+    "name": "isaac",
+    "path": "folders/Sprites/isaac.yy",
   },
 }

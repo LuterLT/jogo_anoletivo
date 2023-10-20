@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "obj_inimigo_besouro",
   "spriteId": {
-    "name": "spr_inimigo_besouro",
-    "path": "sprites/spr_inimigo_besouro/spr_inimigo_besouro.yy",
+    "name": "spr_beetle_parado_frente",
+    "path": "sprites/spr_beetle_parado_frente/spr_beetle_parado_frente.yy",
   },
   "solid": false,
   "visible": true,
