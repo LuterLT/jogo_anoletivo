@@ -32,7 +32,6 @@ function scr_isaac_andando()
 	cima = keyboard_check(vk_up) || keyboard_check(ord("W"));
 	baixo = keyboard_check(vk_down) || keyboard_check(ord("S"));
 	hveloc = (direita - esquerda)*veloc;
-	vveloc = (baixo - cima)*veloc;
 	#endregion
 
 		#region colisão
@@ -78,7 +77,6 @@ function scr_isaac_andando()
 			}
 	}
 	#endregion
-	#region dash
 	if keyboard_check(ord("Q"))
 	{
 		alarm[0] = 24;
@@ -91,54 +89,8 @@ function scr_isaac_dash()
 {
 	hveloc = lengthdir_x(dash_veloc, dash_direc);
 	vveloc = lengthdir_y(dash_veloc, dash_direc);
+	estado = scr_isaac_andando;
 	scr_personagem_colisao();
 	var _inst = instance_create_layer(x, y, "Instances", obj_dash_isaac);
 	_inst.sprite_index = sprite_index;
-	estado = scr_isaac_andando;
-	#endregion
-	if mouse_check_button_pressed(mb_left)
-	{
-	image_index = 0
-	switch direc
-			{
-				default:
-					sprite_index = spr_isaac_atacando_faca_direita_strip6;
-				break;
-				case 1:
-					sprite_index = spr_isaac_atacando_faca_costas_strip6;
-				break;
-				case 2:
-					sprite_index = spr_isaac_atacando_faca_esq_strip6;
-				break;
-				case 3:
-					sprite_index = spr_isaac_ataque_faca_frente_strip11;
-				break;
-			}
-	estado = scr_isaac_atacando;
-	}
-}
-
-function scr_isaac_atacando()
-{
-	if image_index >= 1{
-	if atacar == false
-	{
-		switch direc
-				{
-					default:
-						instance_create_layer(x + 10, y, "Instances", obj_colisao_ataque);
-					break;
-					case 1:
-						instance_create_layer(x, y - 10, "Instances", obj_colisao_ataque);
-					break;
-					case 2:
-						instance_create_layer(x - 10, y, "Instances", obj_colisao_ataque);
-					break;
-					case 3:
-						instance_create_layer(x, y + 10, "Instances", obj_colisao_ataque);
-					break;
-				}
-		atacar = true;
-	}
-}
 }
