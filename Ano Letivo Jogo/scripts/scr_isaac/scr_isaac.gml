@@ -1,6 +1,17 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_personagem_colisao(){
+function scr_isaac_andando()
+{
+	
+	#region movimentação
+	direita = keyboard_check(ord("D"));
+	esquerda = keyboard_check(ord("A"));
+	cima = keyboard_check(ord("W"));
+	baixo = keyboard_check(ord("S"));
+	hveloc = (direita - esquerda)*veloc;
+	#endregion
+
+		#region colisão
 	if place_meeting(x + hveloc, y, obj_parede)// or place_meeting(x + hveloc, y, obj_porta)
 		{
 			while !place_meeting(x + sign(hveloc), y, obj_parede)// or !place_meeting(x + sign(hveloc), y, obj_porta)
@@ -22,20 +33,6 @@ function scr_personagem_colisao(){
 		}
 
 	y += vveloc;
-}
-function scr_isaac_andando()
-{
-	
-	#region movimentação
-	direita = keyboard_check(vk_right) || keyboard_check(ord("D"));
-	esquerda = keyboard_check(vk_left) || keyboard_check(ord("A"));
-	cima = keyboard_check(vk_up) || keyboard_check(ord("W"));
-	baixo = keyboard_check(vk_down) || keyboard_check(ord("S"));
-	hveloc = (direita - esquerda)*veloc;
-	#endregion
-
-		#region colisão
-	scr_personagem_colisao();
 	#endregion
 
 	#region Direção
@@ -90,7 +87,8 @@ function scr_isaac_dash()
 	hveloc = lengthdir_x(dash_veloc, dash_direc);
 	vveloc = lengthdir_y(dash_veloc, dash_direc);
 	estado = scr_isaac_andando;
-	scr_personagem_colisao();
+	x += hveloc;
+	y += vveloc;
 	var _inst = instance_create_layer(x, y, "Instances", obj_dash_isaac);
 	_inst.sprite_index = sprite_index;
 }
