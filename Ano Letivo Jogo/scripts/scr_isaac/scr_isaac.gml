@@ -1,15 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_isaac_andando()
+function scr_isaac_colisao()
 {
-	
-	#region movimentação
-	direita = keyboard_check(ord("D"));
-	esquerda = keyboard_check(ord("A"));
-	cima = keyboard_check(ord("W"));
-	baixo = keyboard_check(ord("S"));
-	hveloc = (direita - esquerda)*veloc;
-	#endregion
 
 		#region colisão
 	if place_meeting(x + hveloc, y, obj_parede)// or place_meeting(x + hveloc, y, obj_porta)
@@ -22,7 +14,6 @@ function scr_isaac_andando()
 		}
 
 	x += hveloc;
-	vveloc = (baixo - cima)*veloc;
 	if place_meeting(x, y + vveloc, obj_parede)// or place_meeting(x, y + vveloc, obj_porta)
 		{
 			while !place_meeting(x, y + sign(vveloc), obj_parede)// or !place_meeting(x, y + sign(vveloc), obj_porta)
@@ -34,6 +25,39 @@ function scr_isaac_andando()
 
 	y += vveloc;
 	#endregion
+
+}
+
+function scr_isaac_andando()
+{
+	
+	#region movimentação
+	direita = keyboard_check(ord("D"));
+	esquerda = keyboard_check(ord("A"));
+	cima = keyboard_check(ord("W"));
+	baixo = keyboard_check(ord("S"));
+	
+	hveloc = (direita - esquerda);
+	vveloc = (baixo - cima);
+	veloc_dir = point_direction(x, y, x + hveloc, y + vveloc);
+	
+	
+	
+	if hveloc != 0 or vveloc != 0
+		{
+			veloc = 0.9;
+		}
+		else
+		{
+			veloc = 0;
+		}
+	
+	hveloc = lengthdir_x(veloc, veloc_dir);
+	vveloc = lengthdir_y(veloc, veloc_dir);
+		
+	#endregion
+
+scr_isaac_colisao();
 
 	#region Direção
 	direc = floor((point_direction(x, y, mouse_x, mouse_y)+ 45)/90);
@@ -75,21 +99,26 @@ function scr_isaac_andando()
 	}
 	#endregion
 	#region Dash
-	if keyboard_check(ord("Q"))
+	if stamina > 29 and alarm[2] < 0
 	{
-		alarm[0] = 24;
-		dash_direc = point_direction(x, y, mouse_x, mouse_y);
-		estado = scr_isaac_dash;
+		if keyboard_check(ord("Q"))
+		{
+			stamina -= 30;
+			alarm[2] = 20;
+			alarm[1] = 180;
+			alarm[0] = 24;
+			dash_direc = point_direction(x, y, mouse_x, mouse_y);
+			estado = scr_isaac_dash;
+		}
 	}
 }
 
 function scr_isaac_dash()
 {
 	hveloc = lengthdir_x(dash_veloc, dash_direc);
-	vveloc = lengthdir_y(dash_veloc, dash_direc);
+	vveloc = lengthdir_y(dash_veloc, dash_direc);	
 	estado = scr_isaac_andando;
-	x += hveloc;
-	y += vveloc;
+	scr_isaac_colisao();
 	var _inst = instance_create_layer(x, y, "Instances", obj_dash_isaac);
 	_inst.sprite_index = sprite_index;
 }
